@@ -5,7 +5,7 @@
     uid = 1001;
   };
 
-  services.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = true;
   services.xserver.enable = true;
   services.xserver.desktopManager.kodi.enable = true;
   nixpkgs.config.kodi.enableControllers = true;
@@ -15,6 +15,7 @@
   services.xserver.displayManager.lightdm.autoLogin = {
     enable = true;
     user = "kodi-user";
+    extraGroups = [ "audio" ... ];
     timeout = 0;
   };
 

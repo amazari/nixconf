@@ -5,7 +5,7 @@
     uid = 1001;
   };
 
-  
+  services.pulseaudio.enable = true;
   services.xserver.enable = true;
   services.xserver.desktopManager.kodi.enable = true;
   nixpkgs.config.kodi.enableControllers = true;

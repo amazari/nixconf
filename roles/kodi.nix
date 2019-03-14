@@ -16,7 +16,7 @@
     user = "kodi-user";
     timeout = 0;
   };
-
+  environment.systemPackages = [ pkgs.retroarch ];
   nixpkgs.config.retroarch = { enableDolphin = true; enableMGBA = true; enableMAME = true;
  };
 }

@@ -22,7 +22,6 @@
 
   networking.hostName = "workshopper"; # Define your hostname.
   networking.wireless.enable = false;  # Enables wireless support via 
-wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -55,7 +54,6 @@ wpa_supplicant.
 
   # Enable CUPS to print documents.
   services.printing.enable = false;
-  };
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

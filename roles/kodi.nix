@@ -15,7 +15,7 @@
   services.xserver.displayManager.lightdm.autoLogin = {
     enable = true;
     user = "kodi-user";
-    extraGroups = [ "audio" ... ];
+    extraGroups = [ "audio" ];
     timeout = 0;
   };
 

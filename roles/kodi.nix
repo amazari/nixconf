@@ -2,6 +2,7 @@
 {
   users.users.kodi-user = {
     isNormalUser = true;
+    extraGroups = [ "audio" ];
     uid = 1001;
   };
 
@@ -15,7 +16,6 @@
   services.xserver.displayManager.lightdm.autoLogin = {
     enable = true;
     user = "kodi-user";
-    extraGroups = [ "audio" ];
     timeout = 0;
   };
 

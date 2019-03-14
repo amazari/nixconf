@@ -8,6 +8,7 @@
   
   services.xserver.enable = true;
   services.xserver.desktopManager.kodi.enable = true;
+  nixpkgs.config.kodi.enableControllers = true
   nixpkgs.config.kodi.enableYatp = true;
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.displayManager.lightdm.greeter.enable = false;
@@ -16,7 +17,8 @@
     user = "kodi-user";
     timeout = 0;
   };
+
   environment.systemPackages = [ pkgs.retroarch ];
-  nixpkgs.config.retroarch = { enableDolphin = true; enableMGBA = true; enableMAME = true;
+  nixpkgs.config.retroarch = { enableBsnes = true; enableDolphin = true; enableMGBA = true; enableMAME = true;
  };
 }

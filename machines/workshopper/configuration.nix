@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
       ../../roles/self-maintainance.nix
       ../../users/scaroo-wheel.nix
-      ../../roles/zoneminder.nix
+#      ../../roles/zoneminder.nix
       ../../roles/avahi-nss.nix
       ../../roles/kodi.nix
     ];

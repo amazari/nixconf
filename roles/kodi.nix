@@ -5,6 +5,7 @@
     uid = 1001;
   };
 
+  
   services.xserver.enable = true;
   services.xserver.desktopManager.kodi.enable = true;
   nixpkgs.config.kodi.enableYatp = true;
@@ -16,4 +17,6 @@
     timeout = 0;
   };
 
+  nixpkgs.config.retroarch = { enableDolphin = true; enableMGBA = true; enableMAME = true;
+ };
 }

@@ -7,53 +7,43 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../roles/self-maintainance.nix
-      ../../users/scaroo-wheel.nix
-#      ../../roles/zoneminder.nix
-      ../../roles/avahi-nss.nix
-      ../../roles/kodi.nix
+      ../hardware/machines/bamboo-tower.nix
+
+      ../roles/self-maintainance.nix
+      ../users/scaroo-wheel.nix
+      ../roles/avahi-nss.nix
     ];
+
+#  nixpkgs.overlays = [
+#    (import /home/scaroo/code/nix/my_nixos_conf/overlays/emacs-nix-dev.nix)
+#    (import /home/scaroo/code/nix/my_nixos_conf/overlays/chromium-accelerated.nix)   
+#  ];
+
+  boot.kernelPackages = pkgs.linuxPackages_4_20;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "workshopper"; # Define your hostname.
-  networking.wireless.enable = false;  # Enables wireless support via 
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  networking.hostName = "bamboo"; # Define your hostname.
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
+  nixpkgs.config.allowUnfree = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget
-    git
-    tmux
-    barrier
-    (import /etc/nixos/emacs.nix { inherit pkgs; })
-  ];
+     wget emacs26-nox powertop
+   ];
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  programs.ssh.forwardX11 = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
   networking.firewall.enable = false;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = false;
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

@@ -5,7 +5,7 @@
     extraGroups = [ "audio" ];
     uid = 1001;
   };
-
+  boot.plymouth.enable = true;
   hardware.pulseaudio.enable = true;
   services.xserver.enable = true;
   services.xserver.desktopManager.kodi.enable = true;

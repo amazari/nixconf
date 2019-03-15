@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 {
   # Enable sound.
-  sound.enable = true;
+ boot.plymouth.enable = true;
+ sound.enable = true;
   hardware.pulseaudio = {
     enable = true;
   };
@@ -21,15 +22,5 @@
       enableHidpi = true;
     };
     desktopManager.plasma5.enable = true;
-  };
-  
-  hardware.opengl = {
-    enable = true;
-    extraPackages = with pkgs; [
-      vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
-      beignet
-    ];
   };
 }

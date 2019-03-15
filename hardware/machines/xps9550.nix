@@ -10,44 +10,18 @@
       <nixos-hardware/common/cpu/intel/kaby-lake>
       <nixos-hardware/common/pc/laptop>
       <nixos-hardware/common/pc/laptop/acpi_call.nix>
+
+      ../../hardware/cpu/no-spectre-meltdown-protection.nix
+      ../../hardware/gpu/bumblebee.nix
+      ../../hardware/storage/partitionning/boot-root-swap-labeled.nix
     ];
 
- boot.kernelParams = [ "i915.fastboot=1" "quiet" "pti=off" "l1tf=off" "nospec_store_bypass_disable" 
-"nospectre_v1" "nospectre_v2" "spec_store_bypass_disable"]; 
  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" 
 "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.extraModulePackages = [ ];
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-label/boot";
-      fsType = "vfat";
-    };
-
-  fileSystems."/" =
-    { device = "/dev/disk/by-label/nixos";
-      fsType = "ext4";
-    };
-
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; }];
 
   nix.maxJobs = lib.mkDefault 8;
+
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
-
-  # touchpad goes over i2c
-  boot.blacklistedKernelModules = [ "psmouse" ];
-
-#  config.opengl.extraPackages = with pkgs; [ # These are imported by ocl-icd
-    #intel-ocl # intel cpu
-#    beignet   # intel gpu
-#  ];
-
-
-  hardware.bumblebee.enable = true;
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = false;
-  };
-
   powerManagement.powertop.enable = true;
   services.undervolt = {
     enable = true;
@@ -55,5 +29,13 @@
     uncoreOffset = "-150";
     analogioOffset = "-150";
     temp = "97";
+  };
+
+  # touchpad goes over i2c
+  boot.blacklistedKernelModules = [ "psmouse" ];
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
   };
 }

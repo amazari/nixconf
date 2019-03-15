@@ -1,22 +1,21 @@
 { config, pkgs, ... }:
  {
   imports = [
-      ./xps9550-xipi.nix
-      ../../roles/self-maintainance.nix
-      ../../users/scaroo-wheel.nix
-      ../../roles/avahi-nss.nix
-      ../../roles/workstation-kde.nix
+      ../hardware/machines/xps9550.nix
+      ../roles/self-maintainance.nix
+      ../users/scaroo-wheel.nix
+      ../roles/avahi-nss.nix
+      ../roles/workstation-kde.nix
   ];
 
  nixpkgs.overlays = [
-    (import /home/scaroo/code/nix/my_nixos_conf/overlays/emacs-nix-dev.nix)
-    (import /home/scaroo/code/nix/my_nixos_conf/overlays/chromium-accelerated.nix)   
+    (import ../overlays/emacs-nix-dev.nix)
+    (import ../overlays/chromium-accelerated.nix)   
   ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_4_20;
 
@@ -57,14 +56,10 @@
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "19.03"; # Did you read the comment?
-
-  networking.hosts = {
-    "192.168.0.20" = [ "bamboo" ];
-  };
  
-  nix.maxJobs = 0; 
+  nix.maxJobs = 6; 
   nix.buildMachines = [ {
-    hostName = "bamboo";
+    hostName = "bamboo.local";
     sshUser = "scaroo";
     sshKey = "/root/.ssh/id_builders";
     system = "x86_64-linux";

@@ -1,11 +1,8 @@
 { config, lib, pkgs, ... }: {
 
+  imports = [ ./intel-common.nix
+    ./nvidia-common.nix ];
+
   hardware.bumblebee.enable = true;
-  hardware.opengl = {
-    extraPackages = with pkgs; [
-      vaapiVdpau
-      libvdpau-va-gl
-      vaapiIntel
-    ];
-  };
+#  hardware.bumblebee.pmMethod = "switcheroo";
 }

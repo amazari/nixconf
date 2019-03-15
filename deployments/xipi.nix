@@ -4,8 +4,11 @@
       ../hardware/machines/xps9550.nix
       ../roles/self-maintainance.nix
       ../users/scaroo-wheel.nix
+
       ../roles/avahi-nss.nix
       ../roles/workstation-kde.nix
+      ../roles/steam.nix
+      ../roles/flatpak-runner.nix
   ];
 
  nixpkgs.overlays = [
@@ -16,8 +19,6 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.kernelPackages = pkgs.linuxPackages_4_20;
 
   networking = {
     hostName = "xipi"; # Define your hostname.
@@ -68,7 +69,7 @@
     supportedFeatures = [ "big-parallel" ];
     mandatoryFeatures = [ ];
   }] ;
-  nix.distributedBuilds = true;
+  nix.distributedBuilds = false;
   # optional, useful when the builder has a faster internet connection than yours
 	nix.extraOptions = ''
 		builders-use-substitutes = false

@@ -5,9 +5,9 @@
 
 {
   imports = [
-    ../../hardware/cpu/no-spectre-meltdown-protection.nix
-    ../../hardware/storage/partitionning/boot-root-swap-labeled.nix
-    ../../hardware/gpu/intel-only.nix
+    ../cpu/no-spectre-meltdown-protection.nix
+    ../storage/partitionning/boot-root-swap-labeled.nix
+    ../gpu/intel-only.nix
 ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_acpi" ];
@@ -18,4 +18,6 @@
     enable = true;
     powerOnBoot = true;
   };
+  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+
 }

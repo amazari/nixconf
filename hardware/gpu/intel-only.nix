@@ -1,9 +1,5 @@
 { config, lib, pkgs, ... }:
 {
-hardware.opengl = {
-   enable = true;
-   extraPackages = with pkgs; [
-      vaapiIntel
-    ];
-  };
+  imports = [ ./intel-common.nix ];
+ boot.kernelPackages = pkgs.linuxPackages_5_0;
 }

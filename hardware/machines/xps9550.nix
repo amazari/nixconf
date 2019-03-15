@@ -11,9 +11,10 @@
       <nixos-hardware/common/pc/laptop>
       <nixos-hardware/common/pc/laptop/acpi_call.nix>
 
-      ../../hardware/cpu/no-spectre-meltdown-protection.nix
-      ../../hardware/gpu/bumblebee.nix
-      ../../hardware/storage/partitionning/boot-root-swap-labeled.nix
+      ../cpu/no-spectre-meltdown-protection.nix
+      ../gpu/bumblebee.nix
+      ../storage/partitionning/boot-root-swap-labeled.nix
+      ../misc/bluetooth.nix
     ];
 
  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" 
@@ -33,9 +34,4 @@
 
   # touchpad goes over i2c
   boot.blacklistedKernelModules = [ "psmouse" ];
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = false;
-  };
 }

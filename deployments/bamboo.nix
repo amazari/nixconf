@@ -12,14 +12,9 @@
       ../roles/self-maintainance.nix
       ../roles/avahi-nss.nix
 
-      ../users/root/system.nix
       ../users/scaroo/system.nix
-      
-    ];
 
-  nixpkgs.overlays = [
-    (import ../overlays/emacs-nix-dev.nix)
-  ];
+    ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

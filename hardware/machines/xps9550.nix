@@ -23,7 +23,7 @@
   nix.maxJobs = lib.mkDefault 8;
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
-  powerManagement.powertop.enable = true;
+#  powerManagement.powertop.enable = true;
   services.undervolt = {
     enable = true;
     coreOffset = "-150";

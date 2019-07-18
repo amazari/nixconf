@@ -3,17 +3,12 @@
   imports = [
       ../hardware/machines/xps9550.nix
       ../roles/self-maintainance.nix
-      ../users/scaroo-wheel.nix
+      ../users/scaroo/system.nix
 
       ../roles/avahi-nss.nix
       ../roles/workstation-kde.nix
-      ../roles/steam.nix
+    #  ../roles/steam.nix
       ../roles/flatpak-runner.nix
-  ];
-
- nixpkgs.overlays = [
-    (import ../overlays/emacs-nix-dev.nix)
-    (import ../overlays/chromium-accelerated.nix)   
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -37,12 +32,12 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    wget
-    emacs
-    powertop
-    avahi
-  ];
+#  environment.systemPackages = with pkgs; [
+#    wget
+#    emacs
+#    powertop
+#    avahi
+#  ];
 
   # List services that you want to enable:
 

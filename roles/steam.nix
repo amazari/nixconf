@@ -1,7 +1,7 @@
-{ config, lib, pkgs, ...}:
+{ username, config, lib, pkgs, ...}:
 {
-  users.users.scaroo.packages = [
-    pkgs.steam #.override { native=true; }
+    users.users.$(username).packages = with pkgs: [
+    steam #.override { native=true; }
   ];
   
  hardware.opengl.driSupport32Bit = true;

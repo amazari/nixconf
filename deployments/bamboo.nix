@@ -10,16 +10,18 @@
       ../hardware/machines/bamboo-tower.nix
 
       ../roles/self-maintainance.nix
-      ../users/scaroo-wheel.nix
       ../roles/avahi-nss.nix
+
+      ../users/root/system.nix
+      ../users/scaroo/system.nix
+      
     ];
 
-#  nixpkgs.overlays = [
-#    (import /home/scaroo/code/nix/my_nixos_conf/overlays/emacs-nix-dev.nix)
-#    (import /home/scaroo/code/nix/my_nixos_conf/overlays/chromium-accelerated.nix)   
-#  ];
+  nixpkgs.overlays = [
+    (import ../overlays/emacs-nix-dev.nix)
+  ];
 
-  boot.kernelPackages = pkgs.linuxPackages_4_20;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -29,13 +31,6 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
-
-  nixpkgs.config.allowUnfree = true;
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-     wget emacs26-nox powertop
-   ];
 
   # List services that you want to enable:
 

@@ -15,6 +15,6 @@
 
   boot.kernelModules = [ "kvm-intel" ];
 
-  nix.maxJobs = lib.mkDefault 12;
+  nix.maxJobs = lib.mkDefault 10;
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 }

@@ -11,6 +11,7 @@
 
       ../roles/self-maintainance.nix
       ../roles/avahi-nss.nix
+      ../roles/graphical.nix
 
       ../users/scaroo-xmonad
 

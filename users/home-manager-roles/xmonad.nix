@@ -1,6 +1,5 @@
 { config, pkgs, ... }: {
 
-  services.taffybar.enable = true;
   xsession.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;

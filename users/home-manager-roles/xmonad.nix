@@ -4,7 +4,7 @@
   xsession.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
-    config = ''
+    config = pkgs.writeText "xmonad.hs" ''
 
    import XMonad
 

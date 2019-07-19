@@ -26,4 +26,10 @@
      emacsc = "emacsclient";
      };
   };
+
+  home.packages = with pkgs; [
+    unzip
+    wget
+    psmisc
+  ];
 }

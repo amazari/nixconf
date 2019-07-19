@@ -1,65 +1,25 @@
-{ config, pkgs, lib, ... }:
-let
-  emacsHaskellDev =
-  ((import ../../packages/emacs-packages-sets.nix)
-  { inherit pkgs; }).emacsHaskellDev;
-in {
-
-  imports = [ ../base.nix ];
-
-  fonts.fontconfig.enable = true;
-  home.packages = with pkgs; [
-
-    #TODO: separate by roles
-    nix-prefetch-github
-    nix-prefetch-git
-    unzip
-    wget
-    psmisc
-
-    ark
-    latte-dock
-#    digikam
-    spotify
-    chromium
-    libreoffice
-    redshift-plasma-applet
-    kdeconnect
-
-    fira-code
-    fira-code-symbols
-    hack-font
-    cabal2nix
-    emacsHaskellDev
-];
-
+{ config, pkgs, lib, ... }: {
 
   programs.bash = {
     sessionVariables = {
       NIXOS_DEV_ROOT = "~/code/nix/conf/";
     };
-    shellAliases = {
-      chromium = "chromium " +
-                   builtins.replaceStrings [ "\n" ] [ " " ] ''
-                   --load-media-router-component-extension=1
-                   --enable-features=ViewsCastDialog
-                   --enable-gpu-rasterization
-               la    --ignore-gpu-blacklist
-                   --enable-native-gpu-memory-buffers
-                   --enable-zero-copy
-                   --disable-gpu-driver-workarounds
-                   '';
-     };
   };
-
-
-
 
   programs.git = {
     enable = true;
     userName  = "scaroo";
     userEmail = "scaroo@gmail.com";
   };
+
+  home.packages = with pkgs; [
+    nix-prefetch-github
+    nix-prefetch-git
+
+    fira-code
+    fira-code-symbols
+    hack-font
+  ];
 
   programs.direnv = {
     enable = true;
@@ -68,7 +28,6 @@ in {
   home.file.".direnvrc" = {
     text = ''
 use_nix() {
-  echo "DEDE"
   local path="$(nix-instantiate --find-file nixpkgs)"
 
   if [ -f "$path/.version-suffix" ]; then
@@ -101,6 +60,6 @@ use_nix() {
   fi
 }
 '';
-
 };
+
 }

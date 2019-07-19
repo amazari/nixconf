@@ -12,7 +12,7 @@
       ../roles/self-maintainance.nix
       ../roles/avahi-nss.nix
 
-      ../users/scaroo/system.nix
+      ../users/scaroo-xmonad
 
     ];
 

@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let
+  userConfigByRoles = import ../user-config-by-roles.nix;
 
-  imports = [ ../troubleshoot.nix ];
-}
+in userConfigByRoles {roles = ["troubleshoot.nix"];}

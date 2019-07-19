@@ -3,11 +3,11 @@
   imports = [
       ../hardware/machines/xps9550.nix
       ../roles/self-maintainance.nix
-      ../users/scaroo/system.nix
+      ../users/scaroo-kde
 
       ../roles/avahi-nss.nix
       ../roles/workstation-kde.nix
-    #  ../roles/steam.nix
+
       ../roles/flatpak-runner.nix
   ];
 
@@ -44,7 +44,7 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   programs.ssh.forwardX11 = true;
-  
+
   networking.firewall.enable = false;
 
   # This value determines the NixOS release with which your system is to be
@@ -52,8 +52,8 @@
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "19.03"; # Did you read the comment?
- 
-  nix.maxJobs = 6; 
+
+  nix.maxJobs = 6;
   nix.buildMachines = [ {
     hostName = "bamboo.local";
     sshUser = "scaroo";
